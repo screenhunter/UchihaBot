@@ -53,6 +53,8 @@ client.on('message', msg => {
     msg.channel.send('love is ez but i am bz');
   } else if (msg.content.toLowerCase() == 'jutsu') {
     msg.channel.send(jutsu.pickJutsu() + '!');
+  } else if (msg.content.toLowerCase().includes('sadboi hours')) {
+    msg.reply('its okay to be alone forever');
   }
   prevMsg = msg;
 });
