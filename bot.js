@@ -16,7 +16,6 @@ client.on('message', msg => {
     t = msg.createdTimestamp;
     return;
   }
-  console.log(msg.channel);
   if (msg.channel.id != '559310068240351233' && !(prevMsg == null) && msg.createdTimestamp - prevMsg.createdTimestamp < 10000)
     return;
   if (msg.content.toLowerCase().includes('is gone')) {
@@ -38,7 +37,7 @@ client.on('message', msg => {
   } else if ((msg.content.toLowerCase().includes('queen')
     || msg.content.toLowerCase().includes('janet'))
     && msg.author.id != '558810306755690497') {
-    msg.channel.send('Janet-kun is our queen!');
+   msg.channel.send('Janet-kun is our queen!');
   } else if (msg.content.toLowerCase().includes('peel')
     && msg.author.id != '558810306755690497') {
     msg.channel.send('Peel David!');
@@ -55,6 +54,9 @@ client.on('message', msg => {
     msg.channel.send(jutsu.pickJutsu() + '!');
   } else if (msg.content.toLowerCase().includes('sadboi hours')) {
     msg.reply('its okay to be alone forever');
+  } else if (msg.content.toLowerCase().includes('friend')
+     && msg.author.id != '558810306755690497') {
+    msg.channel.send('friends...what are those?');
   }
   prevMsg = msg;
 });
