@@ -8,21 +8,23 @@ client.on('ready', () => {
 
 const BOT = '558810306755690497';
 const JUSTIN = '188395541347041281';
+const JANET = '158438213273255936';
 
 function checkIfBotIsSender(msg) {
   return msg.author.id == BOT;
 }
 
-t = 0;
-
 client.on('message', msg => {
+  if (checkIfBotIsSender(msg))
+    return;
+  
   msgText = msg.content.toLowerCase();;
-  if (msg.author.id == JUSTIN) {
-    if (msg.createdTimestamp - t > 60000)
+  
+  if (msg.author.id == JUSTIN && Math.random() < .2) {
       msg.reply('SHUTUP');
-    t = msg.createdTimestamp;
     return;
   }
+  
   if (msgText.includes('is gone')) {
     index = msgText.indexOf(' is gone');
     while (index > 0 && msg.content.charAt(index - 1).match('[a-zA-Z ]') != null) {
@@ -32,46 +34,74 @@ client.on('message', msg => {
     console.log(msg.content.indexOf(' is gone'));
     name = msg.content.substring(index, msg.content.indexOf(' is gone'));
     msg.channel.send(`\:crab: ${name} is gone \:crab:`);
+    return;
   }
-  if (msg.isMentioned(client.user) && msgText.includes('love')) {
+  
+  if (
+    msg.isMentioned(client.user)
+    && msgText.includes('love')
+  ) {
     msg.reply('someday someone will love you too');
-  } else if (msg.isMentioned(client.user) && msgText.includes('tell me a joke')) {
+  } else if (
+    msg.isMentioned(client.user)
+    && msgText.includes('tell me a joke')
+  ) {
     msg.channel.send('Your life');
-  } else if ((msgText.includes('nasus')
+  } else if (
+    msgText.includes('nasus')
     || msgText.includes('stack')  
     || msgText.includes('cane')  
-    || msgText.includes('susan'))
-    && !checkIfBotIsSender(msg)
-    ) {
+    || msgText.includes('susan')
+  ) {
     msg.channel.send('STACK!');
-  } else if ((msgText.includes('queen')
-    || msgText.includes('janet'))
-    && !checkIfBotIsSender(msg)) {
-   msg.channel.send('Janet-kun is our queen!');
-  } else if (msgText.includes('peel')
-    && !checkIfBotIsSender(msg)) {
+  } else if (
+    msgText.includes('queen')
+    || msgText.includes('janet')
+  ) {
+    msg.channel.send('Janet-kun is our queen!');
+  } else if (
+    msgText.includes('peel')
+  ) {
     msg.channel.send('Peel David!');
-  } else if (msgText.includes('best girl')
-    && !checkIfBotIsSender(msg)) {
+  } else if (
+    msgText.includes('best girl')
+  ) {
     msg.channel.send('Best girl = Janet <3');
-  } else if (msgText.includes('abi')
-    && !checkIfBotIsSender(msg)) {
-    msg.channel.send('Who is best girl\'s best girl? ABI');
-  } else if (msgText == 'sneeze') {
+  } else if (
+    msgText.includes('abi')
+  ) {
+    msg.channel.send('Brown boi\'s property');
+  } else if (
+    msgText == 'sneeze'
+  ) {
     msg.channel.send('ACHOO');
-  } else if (msgText.includes('ez')
-    && !checkIfBotIsSender(msg)) {
+  } else if (
+    msgText.includes('ez')
+  ) {
     msg.channel.send('love is ez but i am bz');
-  } else if (msgText == 'jutsu'
-    && !checkIfBotIsSender(msg)) {
+  } else if (
+    msgText.includes('jutsu')
+  ) {
     msg.channel.send(jutsu.pickJutsu() + '!');
-  } else if (msgText.includes('sadboi hours')) {
+  } else if (
+    msgText.includes('sadboi hours')
+  ) {
     msg.reply('its okay to be alone forever');
-  } else if (msgText.includes('friend')
-    && !checkIfBotIsSender(msg)) {
+  } else if (
+    msgText.includes('friend')
+  ) {
     msg.channel.send('friends...what are those?');
+  } else if (
+    msgText.includes('support')
+    || msgText.includes('galio')
+  ) {
+    j = client.users.get(JANET);
+    msg.channel.send(`${j} play galio support`)
+  } else if (
+    msgText.includes('power')
+  ) {
+    msg.channel.send('The whites dont deserve power');
   }
-  prevMsg = msg;
 });
 
 client.login(process.env.TOKEN);
