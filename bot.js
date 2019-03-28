@@ -58,7 +58,7 @@ client.on('message', msg => {
     msgText.includes('queen')
     || msgText.includes('janet')
   ) {
-    msg.channel.send('Janet-kun is our queen!');
+    msg.channel.send('Janet-kun is our precious queen!');
   } else if (
     msgText.includes('peel')
   ) {
@@ -70,7 +70,7 @@ client.on('message', msg => {
   } else if (
     msgText.includes('abi')
   ) {
-    msg.channel.send('Brown boi\'s property');
+    msg.channel.send('goose\'s e-gril');
   } else if (
     msgText == 'sneeze'
   ) {
